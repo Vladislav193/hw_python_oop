@@ -1,11 +1,11 @@
 class InfoMessage:
     """Информационное сообщение о тренировке."""
 
-    def __init__(self, training_type : str,
-                 duration : float, 
-                 distance : float, 
-                 speed : float, 
-                 calories : float
+    def __init__(self, training_type: str,
+                 duration: float, 
+                 distance: float, 
+                 speed: float, 
+                 calories: float
                  ) -> None:
         self.training_type = training_type 
         self.duration = duration
@@ -87,7 +87,7 @@ class SportsWalking(Training):
     koef_cal_sw_1: float = 0.035
     koef_cal_sw_2: float = 0.029
     time_hour: int = 60
-
+    
     def __init__(self, action: int,
                  duration: float, 
                  weight: float, 
@@ -133,7 +133,7 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    train = {'SWM' : Swimming,
+    train = {'SWM': Swimming,
             'RUN': Running,
             'WLK': SportsWalking
              }
