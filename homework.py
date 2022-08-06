@@ -5,7 +5,8 @@ class InfoMessage:
                  duration : float, 
                  distance : float, 
                  speed : float, 
-                 calories : float) -> None:
+                 calories : float
+                 ) -> None:
         self.training_type = training_type 
         self.duration = duration
         self.distance = distance
@@ -17,13 +18,15 @@ class InfoMessage:
               f' Длительность: {self.duration:.3f} ч.;'
               f' Дистанция: {self.distance:.3f} км;'
               f' Ср. скорость: {self.speed:.3f} км/ч;'
-              f' Потрачено ккал: {self.calories:.3f}.')
+              f' Потрачено ккал: {self.calories:.3f}.'
+              )
  
    
 class Training:
     """Базовый класс тренировки."""
     LEN_STEP = 0.65
     M_IN_KM  = 1000
+
     def __init__(self,
                  action: int,
                  duration: float,
@@ -52,7 +55,8 @@ class Training:
                                 self.duration, 
                                 self.get_distance(), 
                                 self.get_mean_speed(),
-                                self.get_spent_calories())
+                                self.get_spent_calories()
+                                )
         return  train_info                      
 
 
@@ -87,7 +91,8 @@ class SportsWalking(Training):
     def __init__(self, action: int,
                  duration: float, 
                  weight: float, 
-                 height: float) -> None:
+                 height: float
+                 ) -> None:
         super().__init__(action, duration, weight)
         self.height = height 
 
@@ -111,7 +116,8 @@ class Swimming(Training):
                  duration: float,
                  weight: float,
                  length_pool: float,
-                 count_pool: float) -> None:
+                 count_pool: float
+                 ) -> None:
         super().__init__(action, duration, weight)
         self.length_pool = length_pool
         self.count_pool = count_pool
@@ -129,7 +135,8 @@ def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
     train = {'SWM' : Swimming,
             'RUN': Running,
-            'WLK': SportsWalking }
+            'WLK': SportsWalking
+             }
     return  train[workout_type](*data)     
 
 
