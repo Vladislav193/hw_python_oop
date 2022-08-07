@@ -16,13 +16,13 @@ class InfoMessage:
 
     def get_massage(self):
         return (f'Тип тренировки: {self.training_type};'
-              f' Длительность: {self.duration:.3f} ч.;'
-              f' Дистанция: {self.distance:.3f} км;'
-              f' Ср. скорость: {self.speed:.3f} км/ч;'
-              f' Потрачено ккал: {self.calories:.3f}.'
-              )
- 
-   
+                f' Длительность: {self.duration:.3f} ч.;'
+                f' Дистанция: {self.distance:.3f} км;'
+                f' Ср. скорость: {self.speed:.3f} км/ч;'
+                f' Потрачено ккал: {self.calories:.3f}.'
+                )
+
+
 class Training:
     """Базовый класс тренировки."""
     LEN_STEP = 0.65
@@ -36,16 +36,16 @@ class Training:
         self.action = action
         self.duration = duration
         self.weight = weight
-        
+
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
         dis = self.action * self.LEN_STEP / self.M_IN_KM 
         return dis
-    
+
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
         return self.get_distance() / self.duration
-       
+
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         pass
@@ -126,11 +126,11 @@ class Swimming(Training):
     def get_mean_speed(self):
         return (self.length_pool * self.count_pool 
         / self.M_IN_KM / self.duration)
-        
+
     def get_spent_calories(self):
         return ((self.get_mean_speed() + self.koef_cal_swim_1) 
         * self.koef_cal_swim_2 * self.weight)
-        
+
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
