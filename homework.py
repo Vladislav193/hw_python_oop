@@ -97,7 +97,7 @@ class Swimming(Training):
     COEF_CAL_SW_1: float = 1.1
     COEF_CAL_SW_2: int = 2
     LEN_STEP: float = 1.38
-    
+
 
     def __init__(self,
                  action: int,
