@@ -3,21 +3,21 @@ from dataclasses import dataclass, asdict
 
 @dataclass
 class InfoMessage:
-        """Информационное сообщение о тренировке."""
-        training_type: str
-        duration: float
-        distance: float
-        speed: float
-        calories: float
+    """Информационное сообщение о тренировке."""
+    training_type: str
+    duration: float
+    distance: float
+    speed: float
+    calories: float
 
-        MESSAGE = ('Тип тренировки: {training_type};'
-                   ' Длительность: {duration:.3f} ч.;'
-                   ' Дистанция: {distance:.3f} км;'
-                   ' Ср. скорость: {speed:.3f} км/ч;'
-                   ' Потрачено ккал: {calories:.3f}.'
-                  )
-        def get_message(self) -> str:
-            return self.MESSAGE.format(**asdict(self))
+    MESSAGE = ('Тип тренировки: {training_type};'
+               ' Длительность: {duration:.3f} ч.;'
+               ' Дистанция: {distance:.3f} км;'
+               ' Ср. скорость: {speed:.3f} км/ч;'
+               ' Потрачено ккал: {calories:.3f}.'
+               )
+    def get_message(self) -> str:
+        return self.MESSAGE.format(**asdict(self))
 
 
 class Training:
@@ -31,14 +31,14 @@ class Training:
                  duration: float,
                  weight: float
                  ) -> None:
-        self.action_numb: int  = action
+        self.action_numb: int = action
         self.duration_hour: float = duration
         self.weight_kg: float = weight
 
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
         return (self.action_numb * self.LEN_STEP / self.M_IN_KM)
- 
+
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
         return self.get_distance() / self.duration_hour
@@ -61,20 +61,20 @@ class Training:
 class Running(Training):
     COEF_CAL_1: int = 18
     COEF_CAL_2: int = 20
-    
+
     """Тренировка: бег."""
 
     def get_spent_calories(self):
         return ((self.COEF_CAL_1 * self.get_mean_speed()
-               - self.COEF_CAL_2) * self.weight_kg / self.M_IN_KM
-               * (self.duration_hour * self.MIN_IN_HOUR))
-  
+                - self.COEF_CAL_2) * self.weight_kg / self.M_IN_KM
+                * (self.duration_hour * self.MIN_IN_HOUR))
+
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
     COEF_CAL_SP_1: float = 0.035
     COEF_CAL_SP_2: float = 0.029
-    
+
 
     def __init__(self, action: int,
                  duration: float,
